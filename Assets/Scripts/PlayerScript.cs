@@ -31,7 +31,7 @@ public class PlayerScript : MonoBehaviour {
         parentTransform = GetComponentInParent<Transform>();
         fpsCamera = GetComponent<Camera> ();
 		line = GetComponent<LineRenderer> ();
-        Knife = Instantiate(KnifePrefab,  new Vector3(1f,0.5f,1.5f), Quaternion.identity);
+        Knife = Instantiate(KnifePrefab,  new Vector3(0.8f,0.5f,1.2f), Quaternion.Euler(0,0,180));
         Knife.SetActive(true);
         Knife.transform.parent = transform; 
         
@@ -47,7 +47,7 @@ public class PlayerScript : MonoBehaviour {
 			RaycastHit hit;
 			Vector3 rayCastOrigin = fpsCamera.ViewportToWorldPoint (new Vector3 (0.5f, 0.5f));
 
-            line.SetPosition(0, Knife.transform.position);
+            //line.SetPosition(0, Knife.transform.position);
 
             if (Physics.Raycast (rayCastOrigin, fpsCamera.transform.forward, out hit, 100f)) 
 			{
@@ -55,7 +55,7 @@ public class PlayerScript : MonoBehaviour {
                 knifeHit = hit.point;
                 heading = knifeHit - Knife.transform.position;
                 direction = heading.normalized;
-                line.SetPosition(1, knifeHit);
+                //line.SetPosition(1, knifeHit);
 
                 //print(direction);
 
@@ -65,7 +65,7 @@ public class PlayerScript : MonoBehaviour {
 
                 direction = rayCastOrigin + fpsCamera.transform.forward * 20 - Knife.transform.position;
                 direction = direction.normalized;
-                line.SetPosition(1, rayCastOrigin + fpsCamera.transform.forward * 20 );
+                //line.SetPosition(1, rayCastOrigin + fpsCamera.transform.forward * 20 );
                 
                 //print(direction);
             }
